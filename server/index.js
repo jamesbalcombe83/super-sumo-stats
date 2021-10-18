@@ -3,28 +3,20 @@ const path = require("path");
 const db = require("./knex.js");
 const app = express();
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 3001;
 
 app.use(express.static(path.resolve(__dirname, "..", "build")));
 
-(async () => {
-    try {
-      //console.log("Running migrations...");
-      //await db.migrate.latest();
-  
-      console.log("Starting express...");
-      app.listen(PORT, () => {
-        console.log(`App listening on port ${PORT}!`);
-      });
-    } catch (err) {
-      console.error("Error starting app!", err);
-      process.exit(-1);
-    }
-  })();
 
-app.get("/", (req, res) => {
+
+app.listen(PORT, () => {
+  console.log(`App listening on port ${PORT}!`);
+});
+
+
+app.get("/api", (req, res) => {
     try {
-        res.send("hello world").status(200);
+        res.json({message : "Super Sumo Stats"}).status(200);
     } catch (error) {
         console.log("Error loading");
         res.sendStatus(500);
