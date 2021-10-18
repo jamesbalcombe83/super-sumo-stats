@@ -5,7 +5,7 @@ const app = express();
 
 const PORT = process.env.PORT || 3001;
 
-app.use(express.static(path.resolve(__dirname, ".", "client/build")));
+app.use(express.static(path.resolve(__dirname, "../client/build")));
 
 
 
@@ -24,8 +24,8 @@ app.get("/api", (req, res) => {
 })
 
 // Always return the main index.html, so react-router render the route in the client
-app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "..", "build", "index.html"));
-});
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
+  });
 
 module.exports = app;
