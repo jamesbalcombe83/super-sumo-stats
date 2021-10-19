@@ -9,7 +9,7 @@
     "server": "nodemon server/index.js",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "cd client && npm install && npm run build",
+    "heroku-postbuild": "cd client && npm install && npm run build & cd ..",
     "test": "npm run test --prefix client",
     "eject": "react-scripts eject",
     "codegen": "graphql-codegen --config codegen.yml"
