@@ -4,40 +4,42 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "scrape": "node ./src/scraper.js -p",
+    "scrape": "node server/scraper.js -p",
     "start": "node server/index.js",
     "server": "nodemon server/index.js",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "build": "npm run build --prefix client",
+    "heroku-postbuild": "npm install --prefix client && npm run build --prefix client",
     "test": "npm run test --prefix client",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "codegen": "graphql-codegen --config codegen.yml"
+  },
+  "engines": {
+    "node": "14.17.5",
+    "npm": "7.24.2"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^12.1.2",
-    "@testing-library/user-event": "^13.5.0",
     "apify": "^2.1.0",
     "chai": "^4.3.4",
     "chai-http": "^4.3.0",
     "concurrently": "^6.3.0",
+    "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "graphql": "^15.6.1",
+    "graphql-tag": "^2.12.5",
     "knex": "^0.95.11",
     "pg": "^8.7.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-scripts": "^4.0.3",
-    "web-vitals": "^2.1.2"
-  },
-  "engines": {
-    "node": "16.10.0",
-    "npm": "7.24.0"
+    "postgraphile": "^4.12.4"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "2.2.1",
+    "@graphql-codegen/typescript": "2.2.4",
+    "@graphql-codegen/typescript-operations": "2.1.8",
+    "@graphql-codegen/typescript-react-apollo": "3.1.6",
     "nodemon": "^2.0.13"
   }
 }
