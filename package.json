@@ -14,6 +14,10 @@
     "eject": "react-scripts eject",
     "codegen": "graphql-codegen --config codegen.yml"
   },
+  "engines": {
+    "node": "14.17.5",
+    "npm": "7.24.2"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -28,7 +32,8 @@
     "graphql-tag": "^2.12.5",
     "knex": "^0.95.11",
     "pg": "^8.7.1",
-    "postgraphile": "^4.12.4"
+    "postgraphile": "^4.12.4",
+    "react-scripts": "^4.0.3"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "2.2.1",
