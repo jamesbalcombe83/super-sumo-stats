@@ -17,6 +17,7 @@ app.use(postgraphile);
 
 //configure port
 app.listen(PORT, () => {
+  console.log(process.env);
   console.log(`App listening on port ${PORT}!`);
 });
 
