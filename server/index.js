@@ -1,40 +1,33 @@
 require('dotenv').config();
-const express = require("express");
-const path = require("path");
+const express = require('express');
+const path = require('path');
 const db = require("./knex.js");
 const postgraphile = require('./postgraphile')
-const app = express();
 const cors = require("cors");
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 5000;
 
-//setup middleware
-app.use(express.static(path.resolve(__dirname, "../client/build")));
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+
+const app = express();
+
+// Priority serve any static files.
+app.use(express.static(path.resolve(__dirname, '../react-ui/build')));
 app.use(cors());
 app.use(postgraphile);
 
-//configure port
-app.listen(PORT, () => {
-  console.log(process.env);
-  console.log(`App listening on port ${PORT}!`);
+// Answer API requests.
+app.get('/api', function (req, res) {
+  res.set('Content-Type', 'application/json');
+  res.json({message : "Super Sumo Stats"})
+  res.send('{"message":"Hello from the custom server!"}');
 });
 
+// All remaining requests return the React app, so it can handle routing.
+app.get('*', function(request, response) {
+  response.sendFile(path.resolve(__dirname, '../react-ui/build', 'index.html'));
+});
 
-//* -----ROUTES----- */
-app.get("/api", (req, res) => {
-    try {
-        res.json({message : "Super Sumo Stats"}).status(200);
-    } catch (error) {
-        console.log("Error loading");
-        res.sendStatus(500);
-    }
-})
+app.listen(PORT, function () {
+  console.error(`listening on port ${PORT}`);
+});
 
-// Always return the main index.html, so react-router render the route in the client
-app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
-  });
-
-module.exports = app;

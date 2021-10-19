@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import { useQuery } from '@apollo/react-components' 
 import { useGetRikishiQuery } from '../generated/graphql';
-import { useRecoilValue } from 'recoil';
-import { listRikishisState, rikishiSelector } from "../store";
+//import { useRecoilValue } from 'recoil';
+//import { listRikishisState, rikishiSelector } from "../store";
 
 
 export default function Rikishi() {

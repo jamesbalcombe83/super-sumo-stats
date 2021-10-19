@@ -1,31 +1,20 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# Node build artifacts
+node_modules
+npm-debug.log
 
-# dependencies
-/node_modules
-/client/node_modules
-/.pnp
-.pnp.js
+# Local development
+*.env
+*.dev
+.DS_Store
+
+# Docker
+Dockerfile
+docker-compose.yml
+
+#apify junk folders
 /apify_storage/datasets
 /apify_storage/deafult
 /apify_storage/request_queues
 apify_storage/request_queues/default
 apify_storage/key_value_stores/default/SDK_CRAWLER_STATISTICS_0.json
 apify_storage/key_value_stores/default/SDK_SESSION_POOL_STATE.json
-
-# testing
-/coverage
-
-# production
-/build
-
-# misc
-.DS_Store
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
