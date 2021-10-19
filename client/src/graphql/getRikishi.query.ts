@@ -1,15 +1,17 @@
 
-import gql from 'graphql-tag';
+import gql from 'graphql-tag'
 
 export default gql`
-  query allRikishis {
-    allRikishis {
-    nodes {
-      ringName
-      highestRank
-      dateOfBirth
-      birthPlace
+    query getRikishi {
+        allRikishis {
+            edges {
+                node {
+                    ringName
+                    highestRank
+                    dateOfBirth
+                    birthPlace
+                }
+            }
+        }
     }
-    }
-}
 `
