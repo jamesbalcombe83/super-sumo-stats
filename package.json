@@ -9,7 +9,7 @@
     "server": "nodemon server/index.js",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-prebuild" : "cd ../client && npm run build",
+    "heroku-prebuild" : "cd ./client && npm run build",
     "heroku-postbuild" : "cd ..",
     "test": "npm run test --prefix client",
     "eject": "react-scripts eject",
