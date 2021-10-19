@@ -11,4 +11,4 @@ const db = knex({
   searchPath: "public",
 });
 
-module.exports = db;
+module.exports = db(config);
