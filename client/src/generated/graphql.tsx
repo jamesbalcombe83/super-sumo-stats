@@ -563,17 +563,19 @@ export type UpdateRikishiPayloadRikishiEdgeArgs = {
 export type GetRikishiQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetRikishiQuery = { __typename?: 'Query', allRikishis?: { __typename?: 'RikishisConnection', nodes: Array<{ __typename?: 'Rikishi', ringName?: string | null | undefined, highestRank?: string | null | undefined, dateOfBirth?: any | null | undefined, birthPlace?: string | null | undefined } | null | undefined> } | null | undefined };
+export type GetRikishiQuery = { __typename?: 'Query', allRikishis?: { __typename?: 'RikishisConnection', edges: Array<{ __typename?: 'RikishisEdge', node?: { __typename?: 'Rikishi', ringName?: string | null | undefined, highestRank?: string | null | undefined, dateOfBirth?: any | null | undefined, birthPlace?: string | null | undefined } | null | undefined }> } | null | undefined };
 
 
 export const GetRikishiDocument = gql`
     query getRikishi {
   allRikishis {
-    nodes {
-      ringName
-      highestRank
-      dateOfBirth
-      birthPlace
+    edges {
+      node {
+        ringName
+        highestRank
+        dateOfBirth
+        birthPlace
+      }
     }
   }
 }

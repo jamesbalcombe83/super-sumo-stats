@@ -4,6 +4,13 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import {
+  RecoilRoot,
+  atom,
+  selector,
+  useRecoilState,
+  useRecoilValue,
+} from 'recoil';
 
 const client = new ApolloClient( {
   uri: "http://localhost:3001/graphql",
@@ -13,7 +20,9 @@ const client = new ApolloClient( {
 ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
+    <RecoilRoot>
     <App />
+    </RecoilRoot>
     </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root')

@@ -3,6 +3,7 @@ import logo from './img/icon.png';
 import './App.css';
 import Rikishi from './components/Rikishi';
 
+
 function App() {
 
   const [data, setData] = React.useState(null);

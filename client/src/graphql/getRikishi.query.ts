@@ -4,11 +4,13 @@ import gql from 'graphql-tag'
 export default gql`
     query getRikishi {
         allRikishis {
-            nodes {
-                ringName
-                highestRank
-                dateOfBirth
-                birthPlace
+            edges {
+                node {
+                    ringName
+                    highestRank
+                    dateOfBirth
+                    birthPlace
+                }
             }
         }
     }
