@@ -3,9 +3,9 @@
 ## Feature
 - [x] migrate basic table structures
 - [x] seed
-- [ ] postgraphile
-- [ ] codegen
-- [ ] write basic query
+- [x] postgraphile
+- [x] codegen
+- [x] write basic query
 - [ ] serve to front end
 - [ ] find rikishi by name by onchange of dropdown
 - [ ] integrate recoil
