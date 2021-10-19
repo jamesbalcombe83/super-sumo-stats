@@ -1,3 +1,4 @@
+require('dotenv').config();
 const { postgraphile } = require('postgraphile')
 
 const { DATABASE, DB_USER, DB_PASSWORD, HOST, PG_PORT } = process.env
