@@ -4,6 +4,7 @@
 
 // Import Apify SDK. For more information, see https://sdk.apify.com/
 const Apify = require('apify');
+const { constructPseudoUrlInstances } = require('apify/build/enqueue_links/shared');
 const { utils: { enqueueLinks },
 } = Apify;
 
@@ -28,9 +29,34 @@ const scraper = Apify.main(async () => {
             $,
             requestQueue,
             //only looks for individual rikishi info pages
-            pseudoUrls: ['http[s?]://sumodb.sumogames.de/Rikishi.aspx?r=[.*]'],
+            pseudoUrls: ['http[s?]://sumodb.sumogames.de/Rikishi.aspx?r=[.*]', 'http[s?]://sumodb.sumogames.de/Rikishi_opp.aspx?r=[.*]'],
             baseUrl: request.loadedUrl,
         });
+
+/*         var text = $('.layoutright').contents().map(function() {
+            console.log(this.name);
+            if(this.name === 'a')    
+                return $(this.attribs);
+        });
+
+        console.log(text); */
+
+        const data = [];
+        if ($('title:contains("bouts by")')) {
+            const allSpans = $('.layoutright').find($('.rb_basho'));
+            allSpans.each((ind, el) => {
+                const results = {};
+                const links = $(el).find($('a'));
+                links.each((ind, el) =>{
+                    results["riki"+(ind+1)] = Number($(el).attr("href").split("=")[1]);
+                    //console.log("link ", ind, " ", $(el).attr("href").split("=")[1]);
+                });
+                results.record = $(el).text().split(" ")[3];
+                //console.log($(el).text().split(" ")[2]);
+                data.push({matchup : results});
+            });
+        }
+        await Apify.pushData(data);
 
         //search for the TD next to the value required.
         let shikonaLoc = $('*:contains("Shikona")');
@@ -45,6 +71,7 @@ const scraper = Apify.main(async () => {
         const result = {
             //extract the next element (always contains the data we want)
             //various string handling to get exact values
+            id : Number(request.url.split("=")[1]),
             ringName : $(shikonaLoc).next('td.val').text().split("-").pop(),
             realName : $(realNameLoc).next('td.val').text(),
             dateOfBirth : new Date($(dobLoc).next('td.val').text()),
@@ -57,13 +84,13 @@ const scraper = Apify.main(async () => {
             retirementBasho : new Date($(intaiLoc).next('td.val').text()),
         }
         if (result.ringName) {
-            await Apify.pushData(result);
+            await Apify.pushData({rikishi: result});
         }
     };
 
     // Set up the crawler, passing a single options object as an argument.
     const crawler = new Apify.CheerioCrawler({
-        maxRequestsPerCrawl: 50, //limit crawls to prevent too many requests
+        maxRequestsPerCrawl: 100, //limit crawls to prevent too many requests
         requestQueue,
         handlePageFunction,
     });

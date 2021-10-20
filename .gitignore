@@ -18,3 +18,5 @@ docker-compose.yml
 apify_storage/request_queues/default
 apify_storage/key_value_stores/default/SDK_CRAWLER_STATISTICS_0.json
 apify_storage/key_value_stores/default/SDK_SESSION_POOL_STATE.json
+apify_storage
+apify_storage
