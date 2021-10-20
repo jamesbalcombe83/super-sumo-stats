@@ -1,5 +1,7 @@
 # Super Sumo Stats
 
+This was created during my time as a student at Code Chrysalis.
+
 ## Feature
 - [x] migrate basic table structures
 - [x] seed
