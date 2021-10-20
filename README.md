@@ -11,10 +11,10 @@ This was created during my time as a student at Code Chrysalis.
 - [x] serve to front end
 - [x] find rikishi by name by onchange of dropdown
 - [x] integrate recoil
-- [ ] scrape matchup data
-- [ ] migrate new tables
-- [ ] seed
-- [ ] compare two rikishi and see their match history
+- [x] scrape matchup data
+- [x] migrate new tables
+- [x] seed
+- [ ] compare two rikishi and see their match history (query written)
 - [ ] side by side view of rikishi westFighter VS eastFighter
 - [ ] mobile friendly
 - [ ] calculate stat details like heaviest, tallest etc.
