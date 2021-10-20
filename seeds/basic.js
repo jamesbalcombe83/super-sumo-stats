@@ -19,12 +19,12 @@ function getRikishiData() {
     const data = [];
     const rikishi = JSON.parse(fs.readFileSync('./apify_storage/key_value_stores/default/allRikishi.json'));
     for (const wrestler of rikishi) {
-      const ringName = wrestler.ringName;
-      const realName = wrestler.realName;
+      const ringName = wrestler.ringName.trim();
+      const realName = wrestler.realName.trim();
       const dateOfBirth = wrestler.dateOfBirth;
-      const birthPlace = wrestler.birthPlace;
-      const heya = wrestler.heya;
-      const highestRank = wrestler.highestRank;
+      const birthPlace = wrestler.birthPlace.trim();
+      const heya = wrestler.heya.trim();
+      const highestRank = wrestler.highestRank.trim();
       const height = wrestler.height;
       const weight = wrestler.weight;
       const openingBasho = wrestler.openingBasho;

@@ -7,8 +7,8 @@
 - [x] codegen
 - [x] write basic query
 - [x] serve to front end
-- [ ] find rikishi by name by onchange of dropdown
-- [ ] integrate recoil
+- [x] find rikishi by name by onchange of dropdown
+- [x] integrate recoil
 - [ ] scrape matchup data
 - [ ] migrate new tables
 - [ ] seed
