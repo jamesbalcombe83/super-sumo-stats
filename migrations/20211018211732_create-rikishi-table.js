@@ -1,7 +1,7 @@
 
 exports.up = function(knex) {
     return knex.schema.createTable('rikishi', (table) => {
-        table.increments('id').primary()
+        table.integer('id').primary()
         table.string('ringName')
         table.string('realName')
         table.string('birthPlace')
@@ -13,8 +13,14 @@ exports.up = function(knex) {
         table.date('openingBasho')
         table.date('retirementBasho')
       })
+      .createTable('matchups', (table) => {
+        table.increments('id').primary();
+        table.integer('riki1').references('id').inTable('rikishi')
+        table.integer('riki2').references('id').inTable('rikishi')
+        table.string('record')
+      })
 };
 
 exports.down = function(knex) {
-  return knex.schema.dropTable("locations");
+  return knex.schema.dropTable("matchups").dropTable('rikishi');
 };
