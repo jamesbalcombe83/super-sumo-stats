@@ -28,15 +28,12 @@ export default function Rikishi() {
    
     return (
         <div>
-          {rikishi.ringName}<br></br>
-          {rikishi.birthPlace}<br></br>
-          {rikishi.heya}<br></br>
-          {rikishi.highestRank}<br></br>
-
-          {rikishi.weight}<br></br>
-
-          
-          {rikishi.height}<br></br>
+          <p>Shikona: {rikishi.ringName}</p>
+          <p>Birth place: {rikishi.birthPlace}</p>
+          <p>Heya: {rikishi.heya}</p>
+          <p>Highest Rank: {rikishi.highestRank}</p>
+          <p>Weight: {rikishi.weight} kg</p>
+          <p>Height: {rikishi.height} m</p> 
 
         </div>
     )
