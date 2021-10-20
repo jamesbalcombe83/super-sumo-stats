@@ -1,66 +1,34 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import logo from './logo.svg';
+import logo from './img/icon.png';
 import './App.css';
-import Rikishi from './components/Rikishi';
+import Rikishi from './components/Rikishi.jsx';
+import Selector from './components/Selector.jsx';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { useGetAllRikishiQuery, useGetARikishiLazyQuery } from './generated/graphql';
+import { rikishiListState, rikishiState } from './store';
 
 function App() {
-  const [message, setMessage] = useState(null);
-  const [isFetching, setIsFetching] = useState(false);
-  const [url, setUrl] = useState('/api');
+    //create the state using the rikishiListState atom
+    const [rikishis, setRikishis] = useRecoilState(rikishiListState);
+    const rikishi = useRecoilValue(rikishiState);
+    const { data, error, loading } = useGetAllRikishiQuery();
 
-  const fetchData = useCallback(() => {
-    fetch(url)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`status ${response.status}`);
+    useEffect(() => {
+        if (data) {
+            if (data && data.allRikishis && data.allRikishis.edges) {
+                //set its value as usual
+                setRikishis(data.allRikishis.edges);
+            }
         }
-        return response.json();
-      })
-      .then(json => {
-        setMessage(json.message);
-        setIsFetching(false);
-      }).catch(e => {
-        setMessage(`API call failed: ${e}`);
-        setIsFetching(false);
-      })
-  }, [url]);
-
-  useEffect(() => {
-    setIsFetching(true);
-    fetchData();
-  }, [fetchData]);
+        if (loading) console.log("loading");
+        if (error) console.log(error);
+    }, [data,loading,error]);
 
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        { process.env.NODE_ENV === 'production' ?
-            <p>
-              This is a production build from create-react-app.
-            </p>
-          : <p>
-              Edit <code>src/App.js</code> and save to reload.
-            </p>
-        }
-        <p>{'« '}<strong>
-          {isFetching
-            ? 'Fetching message from API'
-            : message}
-        </strong>{' »'}</p>
-        <p><a
-          className="App-link"
-          href="https://github.com/mars/heroku-cra-node"
-        >
-          React + Node deployment on Heroku
-        </a></p>
-        <p><a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a></p>
+        <div><Selector /></div>
         <div><Rikishi/></div>
       </header>
     </div>

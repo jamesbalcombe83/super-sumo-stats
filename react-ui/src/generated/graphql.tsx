@@ -560,20 +560,33 @@ export type UpdateRikishiPayloadRikishiEdgeArgs = {
   orderBy?: Maybe<Array<RikishisOrderBy>>;
 };
 
-export type GetRikishiQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetAllRikishiQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetRikishiQuery = { __typename?: 'Query', allRikishis?: { __typename?: 'RikishisConnection', edges: Array<{ __typename?: 'RikishisEdge', node?: { __typename?: 'Rikishi', ringName?: string | null | undefined, highestRank?: string | null | undefined, dateOfBirth?: any | null | undefined, birthPlace?: string | null | undefined } | null | undefined }> } | null | undefined };
+export type GetAllRikishiQuery = { __typename?: 'Query', allRikishis?: { __typename?: 'RikishisConnection', edges: Array<{ __typename?: 'RikishisEdge', node?: { __typename?: 'Rikishi', weight?: any | null | undefined, ringName?: string | null | undefined, retirementBasho?: any | null | undefined, realName?: string | null | undefined, openingBasho?: any | null | undefined, id: number, highestRank?: string | null | undefined, heya?: string | null | undefined, height?: any | null | undefined, birthPlace?: string | null | undefined } | null | undefined }> } | null | undefined };
+
+export type GetARikishiQueryVariables = Exact<{
+  id: Scalars['Int'];
+}>;
 
 
-export const GetRikishiDocument = gql`
-    query getRikishi {
+export type GetARikishiQuery = { __typename?: 'Query', rikishiById?: { __typename?: 'Rikishi', birthPlace?: string | null | undefined, dateOfBirth?: any | null | undefined, height?: any | null | undefined, heya?: string | null | undefined, highestRank?: string | null | undefined, id: number, openingBasho?: any | null | undefined, realName?: string | null | undefined, retirementBasho?: any | null | undefined, ringName?: string | null | undefined, weight?: any | null | undefined } | null | undefined };
+
+
+export const GetAllRikishiDocument = gql`
+    query getAllRikishi {
   allRikishis {
     edges {
       node {
+        weight
         ringName
+        retirementBasho
+        realName
+        openingBasho
+        id
         highestRank
-        dateOfBirth
+        heya
+        height
         birthPlace
       }
     }
@@ -582,28 +595,73 @@ export const GetRikishiDocument = gql`
     `;
 
 /**
- * __useGetRikishiQuery__
+ * __useGetAllRikishiQuery__
  *
- * To run a query within a React component, call `useGetRikishiQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetRikishiQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useGetAllRikishiQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllRikishiQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useGetRikishiQuery({
+ * const { data, loading, error } = useGetAllRikishiQuery({
  *   variables: {
  *   },
  * });
  */
-export function useGetRikishiQuery(baseOptions?: Apollo.QueryHookOptions<GetRikishiQuery, GetRikishiQueryVariables>) {
+export function useGetAllRikishiQuery(baseOptions?: Apollo.QueryHookOptions<GetAllRikishiQuery, GetAllRikishiQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetRikishiQuery, GetRikishiQueryVariables>(GetRikishiDocument, options);
+        return Apollo.useQuery<GetAllRikishiQuery, GetAllRikishiQueryVariables>(GetAllRikishiDocument, options);
       }
-export function useGetRikishiLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetRikishiQuery, GetRikishiQueryVariables>) {
+export function useGetAllRikishiLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAllRikishiQuery, GetAllRikishiQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetRikishiQuery, GetRikishiQueryVariables>(GetRikishiDocument, options);
+          return Apollo.useLazyQuery<GetAllRikishiQuery, GetAllRikishiQueryVariables>(GetAllRikishiDocument, options);
         }
-export type GetRikishiQueryHookResult = ReturnType<typeof useGetRikishiQuery>;
-export type GetRikishiLazyQueryHookResult = ReturnType<typeof useGetRikishiLazyQuery>;
-export type GetRikishiQueryResult = Apollo.QueryResult<GetRikishiQuery, GetRikishiQueryVariables>;
+export type GetAllRikishiQueryHookResult = ReturnType<typeof useGetAllRikishiQuery>;
+export type GetAllRikishiLazyQueryHookResult = ReturnType<typeof useGetAllRikishiLazyQuery>;
+export type GetAllRikishiQueryResult = Apollo.QueryResult<GetAllRikishiQuery, GetAllRikishiQueryVariables>;
+export const GetARikishiDocument = gql`
+    query getARikishi($id: Int!) {
+  rikishiById(id: $id) {
+    birthPlace
+    dateOfBirth
+    height
+    heya
+    highestRank
+    id
+    openingBasho
+    realName
+    retirementBasho
+    ringName
+    weight
+  }
+}
+    `;
+
+/**
+ * __useGetARikishiQuery__
+ *
+ * To run a query within a React component, call `useGetARikishiQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetARikishiQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetARikishiQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useGetARikishiQuery(baseOptions: Apollo.QueryHookOptions<GetARikishiQuery, GetARikishiQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetARikishiQuery, GetARikishiQueryVariables>(GetARikishiDocument, options);
+      }
+export function useGetARikishiLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetARikishiQuery, GetARikishiQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetARikishiQuery, GetARikishiQueryVariables>(GetARikishiDocument, options);
+        }
+export type GetARikishiQueryHookResult = ReturnType<typeof useGetARikishiQuery>;
+export type GetARikishiLazyQueryHookResult = ReturnType<typeof useGetARikishiLazyQuery>;
+export type GetARikishiQueryResult = Apollo.QueryResult<GetARikishiQuery, GetARikishiQueryVariables>;
