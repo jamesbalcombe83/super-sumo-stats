@@ -8,7 +8,7 @@
   "scripts": {
     "scrape": "node server/scraper.js -p",
     "serve": "nodemon server/index.js",
-    "start": "node server",
+    "start": "node server/index.js",
     "heroku-postbuild": "cd react-ui && npm install && npm run build"
   },
   "cacheDirectories": [

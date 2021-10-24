@@ -6,7 +6,6 @@ const cors = require("cors");
 const mongoose = require('mongoose');
 const Rikishi = require('./models/rikishi');
 const Match = require('./models/matches');
-const allRikishi = require('../apify_storage/key_value_stores/someRiki.json')
 
 const PORT = process.env.PORT || 5000;
 
