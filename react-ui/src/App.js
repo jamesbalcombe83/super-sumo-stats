@@ -4,34 +4,34 @@ import './App.css';
 import Rikishi from './components/Rikishi.jsx';
 import Selector from './components/Selector.jsx';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import { useGetAllRikishiQuery, useGetARikishiLazyQuery } from './generated/graphql';
 import { rikishiListState, rikishiState } from './store';
+const axios = require('axios');
 
 function App() {
-    //create the state using the rikishiListState atom
-    const [rikishis, setRikishis] = useRecoilState(rikishiListState);
-    const rikishi = useRecoilValue(rikishiState);
-    const { data, error, loading } = useGetAllRikishiQuery();
 
-    useEffect(() => {
-        if (data) {
-            if (data && data.allRikishis && data.allRikishis.edges) {
-                //set its value as usual
-                setRikishis(data.allRikishis.edges);
-            }
-        }
-        if (loading) console.log("loading");
-        if (error) console.log(error);
-    }, [data,loading,error]);
+  const [rikishis, setRikishis] = useRecoilState(rikishiListState);
+  const rikishi = useRecoilValue(rikishiState);
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-      </header>
-        <div><Selector /></div>
-        <div><Rikishi/></div>
-    </div>
+  useEffect(() => {
+    async function getRikishis() {
+      try {
+        const data = await axios.get('/all-rikishi');
+        setRikishis(data.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getRikishis();
+  },[])
+
+return (
+  <div className="App">
+    <header className="App-header">
+      <img src={logo} className="App-logo" alt="logo" />
+    </header>
+      <div><Selector /></div>
+      <div><Rikishi/></div>
+   </div>
   );
 
 }

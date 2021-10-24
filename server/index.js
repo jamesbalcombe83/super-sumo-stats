@@ -2,15 +2,13 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const fs = require("fs");
-//const db = require("./knex.js");
-//const postgraphile = require('./postgraphile')
 const cors = require("cors");
 const mongoose = require('mongoose');
 const Rikishi = require('./models/rikishi');
+const Match = require('./models/matches');
 const allRikishi = require('../apify_storage/key_value_stores/someRiki.json')
 
 const PORT = process.env.PORT || 5000;
-
 
 const app = express();
 
@@ -27,7 +25,6 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
 // Priority serve any static files.
 app.use(express.static(path.resolve(__dirname, '../react-ui/build')));
 app.use(cors());
-//app.use(postgraphile);
 
 // Answer API requests.
 app.get('/api', function (req, res) {
@@ -36,18 +33,20 @@ app.get('/api', function (req, res) {
   res.send('{"message":"Hello from the custom server!"}');
 });
 
-app.get('/add-rikishi', (req,res) => {
-  //pass the Rikishi model new values
-  const rikishi = new Rikishi({
-    id: 1,
-    ringName: "Hakuho Sho",
-    realName: "Something whatever"
-  })
-  //save the instance to the database
-  rikishi.save()
-  .then((result) => res.send(result))
-  .catch((err) => console.log(err));
-})
+app.get('/add-matchups', async (req, res) => {
+  let matchups = await JSON.parse(fs.readFileSync('./apify_storage/key_value_stores/allRikishi.json'));
+  matchups = matchups.filter((item) => item.matchup).map((item) => item.matchup);
+  Match.insertMany(matchups)
+  .then((result) => res.send("inserted"))
+  .catch((err) => console.log(err))
+});
+
+app.get('/add-rikishi', (req, res) => {
+  const rikishi = JSON.parse(fs.readFileSync('./apify_storage/key_value_stores/someRiki.json'));
+  Rikishi.insertMany(rikishi)
+  .then((result) => res.send("inserted"))
+  .catch((err) => console.log(err))
+});
 
 //get all the rikishi - there are other find methods
 app.get('/all-rikishi', (req,res) => {
@@ -61,17 +60,11 @@ app.get('/all-rikishi', (req,res) => {
 
 app.get('/rikishi', (req,res) => {
   //method call on the model
-  Rikishi.findById('6173ccb87817098a2b0b3ce9')
+  const { id } = req.query;
+  Rikishi.findOne({id: id})
   .then((result) => {
     res.send(result)
   })
-  .catch((err) => console.log(err))
-});
-
-app.get('/insert-rikishi', (req, res) => {
-  const rikishi = JSON.parse(fs.readFileSync('./apify_storage/key_value_stores/someRiki.json'));
-  Rikishi.insertMany(rikishi)
-  .then((result) => res.send("inserted"))
   .catch((err) => console.log(err))
 });
 
