@@ -33,14 +33,6 @@ const scraper = Apify.main(async () => {
             baseUrl: request.loadedUrl,
         });
 
-/*         var text = $('.layoutright').contents().map(function() {
-            console.log(this.name);
-            if(this.name === 'a')    
-                return $(this.attribs);
-        });
-
-        console.log(text); */
-
         const data = [];
         if ($('title:contains("bouts by")')) {
             const allSpans = $('.layoutright').find($('.rb_basho'));

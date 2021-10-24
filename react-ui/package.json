@@ -3,25 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@apollo/client": "^3.4.16",
-    "@apollo/react-components": "^4.0.0",
-    "@apollo/react-hoc": "^4.0.0",
-    "apollo-cache-inmemory": "^1.6.6",
-    "apollo-link-http": "^1.5.17",
-    "graphql": "^15.6.1",
-    "graphql-tag": "^2.12.5",
+    "axios": "^0.23.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "^2.1.8",
     "recoil": "^0.4.1",
-    "typescript": "^4.4.4"
+    "typescript": "^4.4.4",
+    "use-axios-client": "^2.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "codegen": "graphql-codegen --config codegen.yml"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -32,11 +26,5 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "proxy": "http://localhost:5000",
-  "devDependencies": {
-    "@graphql-codegen/cli": "^2.2.1",
-    "@graphql-codegen/typescript": "^2.2.4",
-    "@graphql-codegen/typescript-operations": "^2.1.8",
-    "@graphql-codegen/typescript-react-apollo": "3.1.6"
-  }
+  "proxy": "http://localhost:5000"
 }
