@@ -33,7 +33,7 @@ return (
       <Selector id='selector1' /><Selector id='selector2'/>
       {rikishi[0] ? <Rikishi id="riki1"/> : ""}
       {rikishi[1] ? <Rikishi id="riki2"/> : ""}
-      <MatchupResults />
+   {/*    <MatchupResults /> */}
    </div>
   );
 

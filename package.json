@@ -9,7 +9,8 @@
     "scrape": "node server/scraper.js -p",
     "serve": "nodemon server/index.js",
     "start": "node server/index.js",
-    "heroku-postbuild": "cd react-ui && npm install && npm run build"
+    "heroku-postbuild": "cd react-ui && npm install && npm run build",
+    "dev": "concurrently \"npm run serve\" \"npm start --prefix react-ui\" "
   },
   "cacheDirectories": [
     "node_modules",
@@ -19,7 +20,6 @@
     "apify": "^2.1.0",
     "chai": "^4.3.4",
     "chai-http": "^4.3.0",
-    "concurrently": "^6.3.0",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.16.4",
@@ -38,6 +38,7 @@
   ],
   "license": "MIT",
   "devDependencies": {
+    "concurrently": "^6.3.0",
     "nodemon": "^2.0.13"
   }
 }
