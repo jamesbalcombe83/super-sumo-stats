@@ -1,5 +1,4 @@
 import { atom, selector } from 'recoil';
-import { useGetAllRikishiQuery, useGetARikishiLazyQuery } from './generated/graphql';
 
 export const rikishiListState = atom({
     key: 'rikishiList',
@@ -8,7 +7,7 @@ export const rikishiListState = atom({
 
 export const rikishiState = atom({
     key: 'rikishi',
-    default: {},
+    default: [{},{}],
 });
 
 /* export const rikishiSelector = selector ({

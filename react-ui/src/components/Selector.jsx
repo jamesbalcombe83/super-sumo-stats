@@ -1,19 +1,25 @@
 import React, {useState, useEffect} from 'react';
-import { useQuery } from '@apollo/react-components' 
 import { rikishiListState, rikishiState } from '../store';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
-export default function Selector() {
+export default function Selector(props) {
     //import a state from the store and use anywhere with useRecoilValue and the atom name
     const rikishis = useRecoilValue(rikishiListState); 
     const [rikishi, setRikishi] = useRecoilState(rikishiState);
 
+    //ensure the rikishi array is updated appropriately based on the selector chosen
     const handleChooseRikishi = (e) => {
-        setRikishi({id : e.target.value});
+        let currentRikishi = [...rikishi];
+        if (props.id === 'selector1') {
+            currentRikishi[0] =  {id : e.target.value} 
+        } else {
+            currentRikishi[1] =  {id : e.target.value} 
+        }
+        setRikishi(currentRikishi);
     }
 
     return (
-        <div>
+        <span>
            { <select onChange={handleChooseRikishi}>
                     <option value="Choose a Rikishi (wrestler)">Choose a Rikishi (wrestler)</option>
                      {rikishis.map((rikishi, index) => {
@@ -25,6 +31,6 @@ export default function Selector() {
                         }
                     )}
             </select>}
-        </div>
+        </span>
     )
 }

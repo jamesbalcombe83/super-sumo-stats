@@ -68,6 +68,16 @@ app.get('/rikishi', (req,res) => {
   .catch((err) => console.log(err))
 });
 
+app.get('/matchup', (req,res) => {
+  //method call on the model
+  const { id1, id2 } = req.query;
+  Match.findOne({riki1: id1, riki2:id2})
+  .then((result) => {
+    res.send(result)
+  })
+  .catch((err) => console.log(err))
+});
+
 // All remaining requests return the React app, so it can handle routing.
 app.get('*', function(request, response) {
   response.sendFile(path.resolve(__dirname, '../react-ui/build', 'index.html'));

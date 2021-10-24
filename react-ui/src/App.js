@@ -3,6 +3,7 @@ import logo from './img/icon.png';
 import './App.css';
 import Rikishi from './components/Rikishi.jsx';
 import Selector from './components/Selector.jsx';
+import MatchupResults from './components/MatchupResults.jsx';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { rikishiListState, rikishiState } from './store';
 const axios = require('axios');
@@ -29,8 +30,10 @@ return (
     <header className="App-header">
       <img src={logo} className="App-logo" alt="logo" />
     </header>
-      <div><Selector /></div>
-      <div><Rikishi/></div>
+      <Selector id='selector1' /><Selector id='selector2'/>
+      {rikishi[0] ? <Rikishi id="riki1"/> : ""}
+      {rikishi[1] ? <Rikishi id="riki2"/> : ""}
+      <MatchupResults />
    </div>
   );
 
