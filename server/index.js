@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 
 //connect to mongoDB
-const dbURI = 'mongodb+srv://jamesb:League89@supersumostats.oo8bi.mongodb.net/SuperSumoStats?retryWrites=true&w=majority'
+const dbURI = process.env.MONGODB_URI
 //async - returns like a promise
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then((result) => app.listen(PORT, function () {
