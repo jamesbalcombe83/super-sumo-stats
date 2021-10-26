@@ -9,6 +9,7 @@
     "scrape": "node server/scraper.js -p",
     "serve": "nodemon server/index.js",
     "start": "node server/index.js",
+    "dev":"concurrently \"npm run serve\" \"npm start --prefix react-ui\"",
     "heroku-postbuild": "cd react-ui && npm install && npm run build"
   },
   "cacheDirectories": [

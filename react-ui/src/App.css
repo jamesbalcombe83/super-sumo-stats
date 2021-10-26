@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  max-width: 600;
 }
 
 .App-logo {
@@ -19,4 +19,22 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.container {
+  display : flex;
+  justify-content: center;
+}
+
+.sidebar {
+  background-color: brown;
+  flex : 1;
+}
+
+.main {
+  background-color: burlywood;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex : 6;
 }
