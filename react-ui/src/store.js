@@ -1,4 +1,5 @@
-import { atom, selector } from 'recoil';
+import { atom, selectorFamily } from 'recoil';
+const axios = require('axios');
 
 export const rikishiListState = atom({
     key: 'rikishiList',
@@ -10,15 +11,10 @@ export const rikishiState = atom({
     default: [{},{}],
 });
 
-/* export const rikishiSelector = selector ({
+export const rikishiSelector = selectorFamily ({
     key: "rikishiSelector",
-    get : ({ get }) => {
-        
-        const { data, error, loading } = useGetARikishiLazyQuery({
-            variables : { id: get(rikishiState)}
-        });
-        if (loading) return "Loading";
-        if (error) return "An error occured!";
-        if (data) return data;
+    get : id => async () => {
+        const response = await axios.get(`/rikishi?id=${id}`)
+        return response.data;
     },
-}); */
+});
