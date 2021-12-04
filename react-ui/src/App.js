@@ -30,7 +30,6 @@ return (
     <header className="App-header">
       <img src={logo} className="App-logo" alt="logo" />
     </header>
-<<<<<<< HEAD
     <div className="container">
       <div className="sidebar"></div>
         <div className="main">
@@ -40,12 +39,6 @@ return (
             <MatchupResults />
           </div>
       </div>
-=======
-      <Selector id='selector1' /><Selector id='selector2'/>
-      {rikishi[0] ? <Rikishi id="riki1"/> : ""}
-      {rikishi[1] ? <Rikishi id="riki2"/> : ""}
-   {/*    <MatchupResults /> */}
->>>>>>> 8cf50d0611fcd9825cf251c0830ca92369bf5c91
    </div>
   );
 
