@@ -3,26 +3,22 @@ import { rikishiState } from '../store';
 import { useRecoilState,  } from 'recoil';
 import { useAxios } from 'use-axios-client';
 
+
 export default function MatchupResults() {
     //import a state from the store and use anywhere with useRecoilValue and the atom name
     const [rikishi, setRikishi] = useRecoilState(rikishiState); 
 
-    let id1,id2, display;
+    const id1 = rikishi[0].id;
+    const id2 = rikishi[1].id;
 
-    if (id1 && id2) {
-        id1 = rikishi[0].id;
-        id2 = rikishi[1].id;
+    const { data , loading, error } = useAxios({
+        url: `/matchup?id1=${id1}&id2=${id2}`
+    });
 
-        const { data , loading, error } = useAxios({
-            url: `/matchup?id1=${id1}&id2=${id2}`
-        });
-
-        if (loading || !data) return "Select two Rikishi";
-        if (error) return "Error";
-        display = data.record
-    }
-
+    if (loading || !data) return "Select two Rikishi";
+    if (error) return "Error";
+    
     return (
-        <div>{!id1 || id2 ? "Select two Rikishi" : display}</div>
+        <div>{data.record}</div>
     )    
 }
