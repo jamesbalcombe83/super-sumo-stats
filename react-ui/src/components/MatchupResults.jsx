@@ -8,17 +8,22 @@ export default function MatchupResults(props) {
     //import a state from the store and use anywhere with useRecoilValue and the atom name
     const [rikishi, setRikishi] = useRecoilState(rikishiState); 
 
-    const id1 = rikishi[0].id;
-    const id2 = rikishi[1].id;
+    let id1,id2, display;
 
-    const { data , loading, error } = useAxios({
-        url: `/matchup?id1=${id1}&id2=${id2}`
-    });
+    if (id1 && id2) {
+        id1 = rikishi[0].id;
+        id2 = rikishi[1].id;
 
-    if (loading || !data) return "Select two Rikishi";
-    if (error) return "Error";
-    
+        const { data , loading, error } = useAxios({
+            url: `/matchup?id1=${id1}&id2=${id2}`
+        });
+
+        if (loading || !data) return "Select two Rikishi";
+        if (error) return "Error";
+        display = data.record
+    }
+
     return (
-        <div>{data.record}</div>
+        <div>{!id1 || id2 ? "Select two Rikishi" : display}</div>
     )    
 }

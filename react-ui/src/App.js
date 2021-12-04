@@ -30,10 +30,15 @@ return (
     <header className="App-header">
       <img src={logo} className="App-logo" alt="logo" />
     </header>
-      <Selector id='selector1' /><Selector id='selector2'/>
-      {rikishi[0] ? <Rikishi id="riki1"/> : ""}
-      {rikishi[1] ? <Rikishi id="riki2"/> : ""}
-      <MatchupResults />
+    <div className="container">
+      <div className="sidebar"></div>
+        <div className="main">
+            <Selector id='selector1' /><Selector id='selector2'/>
+            {rikishi[0] ? <Rikishi id="riki1"/> : ""}
+            {rikishi[1] ? <Rikishi id="riki2"/> : ""}
+            <MatchupResults />
+          </div>
+      </div>
    </div>
   );
 
