@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import { rikishiListState, rikishiState } from '../store';
 import { useRecoilState, useRecoilValue } from 'recoil';
 

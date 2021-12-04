@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import { rikishiState } from '../store';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState,  } from 'recoil';
 import { useAxios } from 'use-axios-client';
-import axios from 'axios';
+
 
 export default function MatchupResults(props) {
     //import a state from the store and use anywhere with useRecoilValue and the atom name
