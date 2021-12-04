@@ -1,6 +1,6 @@
 import React from 'react';
 import { rikishiState } from '../store';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState,  } from 'recoil';
 import { useAxios } from 'use-axios-client';
 
 export default function MatchupResults() {
