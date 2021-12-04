@@ -1,10 +1,10 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import logo from './img/icon.png';
 import './App.css';
 import Rikishi from './components/Rikishi.jsx';
 import Selector from './components/Selector.jsx';
 import MatchupResults from './components/MatchupResults.jsx';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { rikishiListState, rikishiState } from './store';
 const axios = require('axios');
 
