@@ -1,34 +1,18 @@
 import React from 'react';
-import { rikishiState } from '../store';
+import { rikishiSelector } from '../store';
 import { useRecoilState } from 'recoil';
-import { useAxios } from 'use-axios-client';
 
 export default function Rikishi(props) {
-    //import a state from the store and use anywhere with useRecoilValue and the atom name
-    const [rikishi, setRikishi] = useRecoilState(rikishiState); 
-
-    let id;
-    //select the correct id based on the rikishi component displaying the data
-    if (props.id ==='riki1') {
-        id = Number(rikishi[0].id);
-    } else {
-        id = Number(rikishi[1].id);
-    }
-    const { data , loading, error } = useAxios({
-        url: `/rikishi?id=${id}`
-    });
-
-    if (loading || !data) return "Select a Rikishi";
-    if (error) return "Error";
+    const data = useRecoilState(rikishiSelector(props.id));
 
     return (
         <div>
-          <p>Shikona: {data.ringName}</p>
-          <p>Birth place: {data.birthPlace}</p>
-          <p>Heya: {data.heya}</p>
-          <p>Highest Rank: {data.highestRank}</p>
-          <p>Weight: {data.weight} kg</p>
-          <p>Height: {data.height} m</p> 
+          <p>Shikona: {data[0].ringName}</p>
+          <p>Birth place: {data[0].birthPlace}</p>
+          <p>Heya: {data[0].heya}</p>
+          <p>Highest Rank: {data[0].highestRank}</p>
+          <p>Weight: {data[0].weight} kg</p>
+          <p>Height: {data[0].height} m</p> 
         </div>
     )
 }

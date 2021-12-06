@@ -1,16 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense} from 'react';
 import logo from './img/icon.png';
 import './App.css';
 import Rikishi from './components/Rikishi.jsx';
 import Selector from './components/Selector.jsx';
 import MatchupResults from './components/MatchupResults.jsx';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useSetRecoilState, useRecoilValue } from 'recoil';
 import { rikishiListState, rikishiState } from './store';
 const axios = require('axios');
 
 function App() {
 
-  const [rikishis, setRikishis] = useRecoilState(rikishiListState);
+  const setRikishis = useSetRecoilState(rikishiListState);
   const rikishi = useRecoilValue(rikishiState);
 
   useEffect(() => {
@@ -34,9 +34,13 @@ return (
       <div className="sidebar"></div>
         <div className="main">
             <Selector id='selector1' /><Selector id='selector2'/>
-            {rikishi[0] ? <Rikishi id="riki1"/> : ""}
-            {rikishi[1] ? <Rikishi id="riki2"/> : ""}
-            <MatchupResults />
+            <Suspense fallback = "Select a rikishi">
+              {rikishi[0].id ? <Rikishi id={rikishi[0].id}/> : "Select first Rikishi"}
+              {rikishi[1].id ? <Rikishi id={rikishi[1].id}/> : "Select second Rikishi"}
+            </Suspense>
+            <Suspense fallback="Loading matchup" >
+              <MatchupResults />
+            </Suspense>
           </div>
       </div>
    </div>

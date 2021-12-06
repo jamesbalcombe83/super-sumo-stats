@@ -1,4 +1,4 @@
-import { atom, selectorFamily } from 'recoil';
+import { atom, selectorFamily, selector } from 'recoil';
 const axios = require('axios');
 
 export const rikishiListState = atom({
@@ -13,8 +13,19 @@ export const rikishiState = atom({
 
 export const rikishiSelector = selectorFamily ({
     key: "rikishiSelector",
-    get : id => async () => {
-        const response = await axios.get(`/rikishi?id=${id}`)
-        return response.data;
-    },
+    get : id => ({ get }) => {
+        const result = get(rikishiListState).filter(item => item.id === Number(id));
+        return result[0];
+    }
 });
+
+export const matchSelector = selector({
+    key: "matchSelector",
+    get: async ({ get }) => {
+        const rikishis = get(rikishiState);
+        if (rikishis[0].id && rikishis[1].id) {
+            const result = await axios.get(`/matchup?id1=${rikishis[0].id}&id2=${rikishis[1].id}`);
+            return result.data ? result.data.record : "Awaiting results";
+        }
+    }
+})
