@@ -50,6 +50,7 @@ return (
           {matchResults ? <MatchupResults /> : "Choose two Rikishi"}
         </Suspense>
       </div>
+      <h6 className="about">Copyright © 2021 James Balcombe - built with React.js</h6>
    </div>
   );
 
