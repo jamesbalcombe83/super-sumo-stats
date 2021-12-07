@@ -45,7 +45,9 @@
 
 .selector {
   text-align: center;
-  font-size: 16px;
+  border : 1 solid black;
+  border-radius: 10px;
+  font-size: 18px;
   margin : 1em 0.5em 1.5em;
 }
 
