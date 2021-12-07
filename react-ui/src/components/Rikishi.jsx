@@ -6,7 +6,7 @@ export default function Rikishi(props) {
     const data = useRecoilState(rikishiSelector(props.id));
 
     return (
-        <div>
+        <div className="rikishi">
           <p>Shikona: {data[0].ringName}</p>
           <p>Birth place: {data[0].birthPlace}</p>
           <p>Heya: {data[0].heya}</p>

@@ -1,40 +1,72 @@
 .App {
+  background-color: burlywood;
   max-width: 600;
-}
-
-.App-logo {
-  height: 20vmin;
+  display: flex;
+  width : 100%;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  height: 100vh;
+  padding-bottom: 30px;
 }
 
 .App-header {
-  background-color: #324a79;
-  min-height: 20vh;
+  background-color: #394f7a;
+  padding-top : 1vh;
+  min-height: 20vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  width: 100%
 }
 
-.App-link {
-  color: #61dafb;
+.App-logo {
+  height: 20vw;
 }
 
 .container {
   display : flex;
   justify-content: center;
+  flex-direction: row;
+  /* min-height: 100vh; */
+  width: 100%;
 }
 
-.sidebar {
-  background-color: brown;
-  flex : 1;
-}
-
-.main {
-  background-color: burlywood;
-  align-items: center;
-  justify-content: center;
+.rikishi {
+  display: flex;
   flex-direction: column;
-  flex : 6;
+  align-items: center;
+  flex: 1 1 50%;
+  font-size: 18px;
+}
+
+.selector {
+  text-align: center;
+  font-size: 16px;
+  margin : 1em 0.5em 1.5em;
+}
+
+.matches {
+  margin-top: 10px;
+}
+
+.results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.results h2, h3 {
+  font-weight: 500;
+  padding-bottom: 10px;
+  margin: 0px;
+}
+
+@media screen and (max-width: 650px) {
+  .container {
+    flex-direction : column;
+  }
 }

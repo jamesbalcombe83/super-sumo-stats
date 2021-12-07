@@ -20,7 +20,7 @@ export default function Selector(props) {
 
     return (
         <span>
-           { <select onChange={handleChooseRikishi}>
+           { <select onChange={handleChooseRikishi}  className="selector">
                     <option value="Choose a Rikishi (wrestler)">Choose a Rikishi (wrestler)</option>
                      {rikishis.map((rikishi, index) => {
                         return (
