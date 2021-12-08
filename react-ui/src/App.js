@@ -1,5 +1,5 @@
 import React, { useEffect, Suspense} from 'react';
-import logo from './img/icon.png';
+import logo from './img/logo.svg';
 import './App.css';
 import Rikishi from './components/Rikishi.jsx';
 import Selector from './components/Selector.jsx';
@@ -29,29 +29,33 @@ function App() {
 return (
   <div className="App">
     <header className="App-header">
+      <p>Super Sumo Stats</p>
       <img src={logo} className="App-logo" alt="logo" />
     </header>
-    <div className="container">
-        <div className="rikishi">
-          <Selector id='selector1' />
-          <Suspense fallback = "Select a rikishi">
-            {rikishi[0].id ? <Rikishi id={rikishi[0].id}/> : "Select first Rikishi"}
+    <div className="outer">
+      <div className="container">
+          <div className="rikishi">
+            <Selector id='selector1' />
+            <Suspense fallback = "Select a rikishi">
+              {rikishi[0].id ? <Rikishi id={rikishi[0].id}/> : "Select first Rikishi"}
+            </Suspense>
+          </div>
+          <div className="rikishi">
+            <Selector id='selector2'/>
+            <Suspense fallback = "Select a rikishi">
+              {rikishi[1].id ? <Rikishi id={rikishi[1].id}/> : "Select second Rikishi"}
+            </Suspense>
+          </div>
+        </div>
+        <div className="matches">
+          <Suspense fallback="Loading matchup" >
+            {matchResults ? <MatchupResults /> : "Choose two Rikishi"}
           </Suspense>
         </div>
-        <div className="rikishi">
-          <Selector id='selector2'/>
-          <Suspense fallback = "Select a rikishi">
-            {rikishi[1].id ? <Rikishi id={rikishi[1].id}/> : "Select second Rikishi"}
-          </Suspense>
-        </div>
-      </div>
-      <div className="matches">
-        <Suspense fallback="Loading matchup" >
-          {matchResults ? <MatchupResults /> : "Choose two Rikishi"}
-        </Suspense>
-      </div>
-      <h6 className="about">Copyright © 2021 James Balcombe - built with React.js</h6>
    </div>
+      <h6 className="about">Copyright © 2021 James Balcombe - built with React.js</h6>
+
+    </div>
   );
 
 }
