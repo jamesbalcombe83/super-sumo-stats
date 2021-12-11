@@ -1,6 +1,5 @@
 # Super Sumo Stats
 
-This was created during my time as a student at Code Chrysalis.
 Available [live](https://super-sumo-stats.herokuapp.com/)
 
 ## Feature
