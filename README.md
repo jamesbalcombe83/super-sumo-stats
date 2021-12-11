@@ -14,7 +14,7 @@ This was created during my time as a student at Code Chrysalis.
 - [x] scrape matchup data
 - [x] migrate new tables
 - [x] seed
-- [ ] compare two rikishi and see their match history (query written)
-- [ ] side by side view of rikishi westFighter VS eastFighter
-- [ ] mobile friendly
+- [x] compare two rikishi and see their match history (query written)
+- [x] side by side view of rikishi westFighter VS eastFighter
+- [x] mobile friendly
 - [ ] calculate stat details like heaviest, tallest etc.
